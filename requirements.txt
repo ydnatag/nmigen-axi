@@ -1,0 +1,1 @@
+-e git+https://github.com/andresdemski/nmigen-cocotb.git#egg=nmigen_cocotb
