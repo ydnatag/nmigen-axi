@@ -5,8 +5,8 @@ from nmigen.lib.fifo import AsyncFIFO
 
 class AxiStreamFifo(Elaboratable):
     def __init__(self, width, depth, cd_i='sync', cd_o='sync'):
-        self.input = AxiStream(width, Direction.FANIN)
-        self.output = AxiStream(width, Direction.FANOUT)
+        self.input = AxiStream(width, Direction.FANIN, name='input')
+        self.output = AxiStream(width, Direction.FANOUT, name='output')
         self.width = width
         self.depth = depth
         self.cd_i = cd_i
@@ -35,7 +35,7 @@ class AxiStreamFifo(Elaboratable):
         return m
 
 if __name__ == '__main__':
-    fifo = AxiStreamFifo(5, 16, cd_i='sync', cd_o='sync')
+    fifo = AxiStreamFifo(5, 16, cd_i='sync_a', cd_o='sync_b')
     ports = [fifo.input[f] for f in fifo.input.fields]
     ports += [fifo.output[f] for f in fifo.output.fields]
     main(fifo, ports=ports)
